@@ -29,4 +29,4 @@ This website is built using a free portfolio template from **FreeFolio**, custom
 
 ## Contact
 - GitHub: https://github.com/teenzhere
-- LinkedIn: https://linkedin.com/in/yourprofile
+- LinkedIn: https://linkedin.com/in/teenathomashere
