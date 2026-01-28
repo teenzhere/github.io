@@ -3,52 +3,309 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Easy Portfolio">
-    <link rel="stylesheet" href="style.css" />
-    <title>Easy a Freefolio template by OSSPH</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Flower a Freefolio template by OSSPH</title>
+    <meta name="description" content="A nature-inspired minimalist portfolio template with smooth animations and modern design">
+    <meta property="og:title" content="Flower Portfolio Template">
+    <meta property="og:description" content="A nature-inspired minimalist portfolio template">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'flower-pink': '#FFB6C1',
+                        'flower-green': '#90EE90',
+                        'flower-purple': '#DDA0DD',
+                        'flower-yellow': '#FFE4B5',
+                        'leaf-green': '#228B22',
+                        'soil-brown': '#8B4513'
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'bloom': 'bloom 2s ease-out forwards',
+                        'sway': 'sway 3s ease-in-out infinite'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        bloom: {
+                            '0%': { transform: 'scale(0)', opacity: '0' },
+                            '50%': { transform: 'scale(1.1)', opacity: '0.8' },
+                            '100%': { transform: 'scale(1)', opacity: '1' }
+                        },
+                        sway: {
+                            '0%, 100%': { transform: 'rotate(-2deg)' },
+                            '50%': { transform: 'rotate(2deg)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom styles for flower petals */
+        .petal {
+            background: linear-gradient(135deg, #FFB6C1 0%, #FFC0CB 100%);
+            border-radius: 0 100% 0 100%;
+            position: absolute;
+        }
+
+        .flower-container {
+            position: relative;
+            width: 100px;
+            height: 100px;
+        }
+
+        .petal:nth-child(1) { transform: rotate(0deg); }
+        .petal:nth-child(2) { transform: rotate(72deg); }
+        .petal:nth-child(3) { transform: rotate(144deg); }
+        .petal:nth-child(4) { transform: rotate(216deg); }
+        .petal:nth-child(5) { transform: rotate(288deg); }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Background pattern */
+        .garden-pattern {
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(255, 182, 193, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(144, 238, 144, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(221, 160, 221, 0.1) 0%, transparent 50%);
+        }
+    </style>
 </head>
-<body>
-    <header>
-        <div class="switch">
-          <div class="flicker"></div>
-          <div class="moon"></div>
+<body class="bg-gradient-to-br from-green-50 via-white to-pink-50 min-h-screen garden-pattern">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md shadow-sm z-50">
+        <div class="container mx-auto px-6 py-2">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <!-- Small flower logo -->
+                    <div class="flower-container scale-50 -ml-4">
+                        <div class="petal w-8 h-8"></div>
+                        <div class="petal w-8 h-8"></div>
+                        <div class="petal w-8 h-8"></div>
+                        <div class="petal w-8 h-8"></div>
+                        <div class="petal w-8 h-8"></div>
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-flower-yellow rounded-full"></div>
+                        
+                    </div>
+                    <span class="text-xl font-bold text-leaf-green">Teena Thomas</span>
+                </div>
+                <ul class="hidden md:flex space-x-8">
+                    <li><a href="#home" class="text-gray-700 hover:text-leaf-green transition">Home</a></li>
+                    <li><a href="#about" class="text-gray-700 hover:text-leaf-green transition">About</a></li>
+                    <li><a href="#skills" class="text-gray-700 hover:text-leaf-green transition">Skills</a></li>
+                    <li><a href="#projects" class="text-gray-700 hover:text-leaf-green transition">Projects</a></li>
+                    <li><a href="#contact" class="text-gray-700 hover:text-leaf-green transition">Contact</a></li>
+                </ul>
+                <!-- Mobile menu button -->
+                <button class="md:hidden text-gray-700" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Mobile menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4">
+                <ul class="space-y-2">
+                    <li><a href="#home" class="block py-2 text-gray-700 hover:text-leaf-green transition">Home</a></li>
+                    <li><a href="#about" class="block py-2 text-gray-700 hover:text-leaf-green transition">About</a></li>
+                    <li><a href="#skills" class="block py-2 text-gray-700 hover:text-leaf-green transition">Skills</a></li>
+                    <li><a href="#projects" class="block py-2 text-gray-700 hover:text-leaf-green transition">Projects</a></li>
+                    <li><a href="#contact" class="block py-2 text-gray-700 hover:text-leaf-green transition">Contact</a></li>
+                </ul>
+            </div>
         </div>
-      </header>
-  
-      <section class="main">
-        <div class="main-text">
-          <h1>Teena Thomas</h1>
-          <p>Welcome to my Page!</p>
-          <br/>
-          <p>I am a Data Enthusiast</p>
-          <br/>
-          <a href="#footer">contact me></a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-16">
+        <div class="container mx-auto px-6 text-center">
+            <!-- Animated Flower -->
+            <div class="flower-container mx-auto mb-8 animate-bloom scale-150">
+                <div class="petal w-20 h-20 animate-sway"></div>
+                <div class="petal w-20 h-20 animate-sway" style="animation-delay: 0.1s"></div>
+                <div class="petal w-20 h-20 animate-sway" style="animation-delay: 0.2s"></div>
+                <div class="petal w-20 h-20 animate-sway" style="animation-delay: 0.3s"></div>
+                <div class="petal w-20 h-20 animate-sway" style="animation-delay: 0.4s"></div>
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-flower-yellow rounded-full shadow-lg"></div>
+            </div>
+
+            <h1 class="text-5xl md:text-7xl font-bold text-gray-800 mb-4">
+                Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-flower-pink to-flower-purple">Teena Thomas</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-600 mb-8">Data Enthusiast</p>
+            <p class="text-lg text-gray-500 max-w-2xl mx-auto mb-12">
+                Crafting impactful insights from data, one analysis at a time. 
+                Focused on precision, thoughtful visualization, and making data work smarter.
+            </p>
+            <div class="space-x-4">
+                <a href="#projects" class="inline-block bg-leaf-green text-white px-8 py-3 rounded-full hover:bg-green-700 transition transform hover:scale-105">
+                    View My Projects
+                </a>
+                <a href="#contact" class="inline-block border-2 border-leaf-green text-leaf-green px-8 py-3 rounded-full hover:bg-leaf-green hover:text-white transition transform hover:scale-105">
+                    Contact
+                </a>
+            </div>
         </div>
-  
-        <div class="hero-image">
-          <div class="cube" id="react"></div>
-          <div class="cube" id="javascript"></div>
-          <div class="cube" id="html"></div>
-          <div class="cube" id="css"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">About Me</h2>
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                   <p class="text-gray-600 leading-relaxed">
+    Hi, I’m a data enthusiast with a background in IT and a passion for making sense of complex information. 
+    I work with SQL, R, Excel, and data visualization to uncover patterns, organize datasets, and turn data into actionable insights. 
+    I’m motivated by curiosity, continuous learning, and the challenge of applying data-driven thinking to solve meaningful problems. 
+    Driven by curiosity and continuous learning, I’m eager to apply data-driven thinking to real-world problems.
+        
+                    </p>
+                    
+                   
+                </div>
+                <div class="relative">
+                    <div class="w-64 h-64 mx-auto bg-gradient-to-br from-flower-pink to-flower-purple rounded-full animate-float"></div>
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-6xl">🔍</div>
+                </div>
+            </div>
         </div>
-  
-      </section>
-                <!--PROJECTS SECTION-->
-      <section class="sub-section">
-        <div class="square" id="revenoo">
-          <h2>Pizza Sales Dashboard</h2>
-          <p>SQL/Power BI</p>
-          <br/>
-          <a href="https://github.com/teenzhere/pizza-store-sales-analytics">check it out ></a> 
+    </section>
+
+
+        <!-- Projects Section -->
+    <section id="projects" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">My Projects</h2>
+            <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition">
+                    <div class="h-48 bg-gradient-to-br from-flower-pink to-pink-200 flex items-center justify-center text-6xl">
+                       🍕 📶
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">SQL/Power BI</h3>
+                        <p class="text-gray-600 mb-4">Pizza Sales Dashboard</p>
+                        <a href="https://github.com/teenzhere/pizza-store-sales-analytics">check it out ></a> 
+                        
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition">
+                    <div class="h-48 bg-gradient-to-br from-flower-green to-green-200 flex items-center justify-center text-6xl">
+                       📊 
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Coming Soon</h3>
+                        <p class="text-gray-600 mb-4">Coming soon dashboard</p>
+                       
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition">
+                    <div class="h-48 bg-gradient-to-br from-flower-purple to-purple-200 flex items-center justify-center text-6xl">
+                        📉
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">coming soon </h3>
+                        <p class="text-gray-600 mb-4">coming soon dashboard</p>
+                        
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white/50">
+        <div class="container mx-auto px-6">
+            
+            <div class="max-w-2xl mx-auto text-center">
+               
+                <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
+                    <a href="mailto:teenathomashere@gmail.com" class="flex items-center space-x-2 text-leaf-green hover:text-green-700 transition">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                        </svg>
+                        <span>teenathomashere@gmail.com</span>
+                    </a>
+                    <a href="https://github.com/janebloom" class="flex items-center space-x-2 text-leaf-green hover:text-green-700 transition">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://linkedin.com/in/janebloom" class="flex items-center space-x-2 text-leaf-green hover:text-green-700 transition">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                        <span>LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-gradient-to-t from-green-100 to-transparent">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-600">
                 
-             </section>
+                <a href="https://github.com/OSSPhilippines/freefolio" class="text-leaf-green hover:text-green-700 transition">
+                    Freefolio Template
+                </a>
+            </p>
+        </div>
+    </footer>
 
-            <!--FOOTER-->
-      <footer id="footer">
-        <p>teenathomashere@gmail.com</p>
-      </footer>
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
 
-    <script src="main.js"></script>
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.add('hidden');
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'bloom 1s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for animation
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>
